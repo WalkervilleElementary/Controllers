@@ -56,6 +56,18 @@ int getError()
   else return (error > 0)? 5 : -5;
 }
 
+//n is the number of sensors to read,
+//Assumed to be connected to analog pins 0 through n-1
+int getAnalogError(int n)
+{
+  int error = 0
+  for (int i = 0; i < n; i++) {
+    int x = -n + 1 + 2 * i;
+    error += analogRead(i) * x;
+  }
+  return error;
+}
+
 int computeCommand(int error, int dt)
 {
   i_error += error;
